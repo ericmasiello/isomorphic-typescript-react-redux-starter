@@ -1,8 +1,13 @@
-import React from 'react';
+import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { AuthToken } from '../../types';
 
-const Header = ({ auth }) => {
+interface Props {
+  auth: AuthToken;
+}
+
+const Header: React.SFC<Props> = ({ auth }) => {
   const authButton = auth ? (
     <a href="/api/logout">Logout</a>
   ) : (
@@ -29,7 +34,7 @@ const Header = ({ auth }) => {
   );
 };
 
-function mapStateToProps({ auth }) {
+function mapStateToProps({ auth }: Props) {
   return { auth };
 }
 
