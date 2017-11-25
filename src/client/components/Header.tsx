@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { AuthToken } from '../../types';
 
 interface Props {
   auth: AuthToken;

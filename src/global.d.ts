@@ -1,0 +1,3 @@
+interface AuthToken {
+  googleId: string;
+}
