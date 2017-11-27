@@ -24,4 +24,5 @@ interface User {
 
 interface Window {
   __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: any;
+  INITIAL_STATE?: any
 }
