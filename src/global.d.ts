@@ -1,5 +1,13 @@
 declare module 'express-http-proxy';
 
+type Auth = AuthToken | null | false;
+
+interface AppState {
+  users: User[];
+  admins: User[];
+  auth: Auth;
+}
+
 interface AuthToken {
   googleId: string;
 }
@@ -7,6 +15,11 @@ interface AuthToken {
 interface Context {
   url?: string;
   notFound?: boolean;
+}
+
+interface User {
+  id: string;
+  name: string;
 }
 
 interface Window {

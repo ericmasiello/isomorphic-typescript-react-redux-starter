@@ -1,9 +1,15 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
+import { Store } from 'redux';
 import { fetchAdmins } from '../actions';
 import requireAuth from '../components/hocs/requireAuth';
 
-class AdminsListPage extends Component {
+interface Props {
+  fetchAdmins: () => (dispatch: any, getState: any, api: any) => Promise<void>;
+  admins: User[];
+}
+
+class AdminsListPage extends React.Component<Props, {}> {
   componentDidMount() {
     this.props.fetchAdmins();
   }
@@ -24,7 +30,7 @@ class AdminsListPage extends Component {
   }
 }
 
-function mapStateToProps({ admins }) {
+function mapStateToProps({ admins }: AppState) {
   return { admins };
 }
 
@@ -32,5 +38,5 @@ export default {
   component: connect(mapStateToProps, { fetchAdmins })(
     requireAuth(AdminsListPage)
   ),
-  loadData: ({ dispatch }) => dispatch(fetchAdmins())
+  loadData: ({ dispatch }: Store<any>) => dispatch(fetchAdmins())
 };

@@ -1,9 +1,15 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
 import { fetchUsers } from '../actions';
+import { Store } from 'redux';
 import { Helmet } from 'react-helmet';
 
-class UsersList extends Component {
+interface Props {
+  fetchUsers: () => (dispatch: any, getState: any, api: any) => Promise<void>;
+  users: User[];
+}
+
+class UsersList extends React.Component<Props, {}> {
   componentDidMount() {
     this.props.fetchUsers();
   }
@@ -34,11 +40,11 @@ class UsersList extends Component {
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state: AppState) {
   return { users: state.users };
 }
 
-function loadData(store) {
+function loadData(store: Store<any>) {
   return store.dispatch(fetchUsers());
 }
 
