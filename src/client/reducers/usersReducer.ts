@@ -1,12 +1,7 @@
+import { Reducer } from 'redux';
 import { FETCH_USERS } from '../actions';
 
-interface Action extends ReduxAction {
-  payload: {
-    data: User[];
-  }
-}
-
-export default (state: User[] = [], action: Action) => {
+const usersReducer: Reducer<User[]> = (state = [], action) => {
   switch (action.type) {
     case FETCH_USERS:
       return action.payload.data;
@@ -14,3 +9,5 @@ export default (state: User[] = [], action: Action) => {
       return state;
   }
 };
+
+export default usersReducer;

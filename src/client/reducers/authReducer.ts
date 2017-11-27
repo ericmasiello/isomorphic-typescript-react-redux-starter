@@ -1,16 +1,14 @@
+import { Reducer } from 'redux';
 import { FETCH_CURRENT_USER } from '../actions';
 
-interface Action extends ReduxAction {
-  payload: {
-    data: AuthToken;
-  }
-}
-
-export default function(state: Auth = null, action: Action) {
+const authReducers: Reducer<Auth> = (state = null, action) => {
   switch (action.type) {
     case FETCH_CURRENT_USER:
+      console.log('FETCH_CURRENT_USER', action);
       return action.payload.data || false;
     default:
       return state;
   }
-}
+};
+
+export default authReducers;
