@@ -1,6 +1,12 @@
 import { FETCH_USERS } from '../actions';
 
-export default (state = [], action) => {
+interface Action extends ReduxAction {
+  payload: {
+    data: User[];
+  }
+}
+
+export default (state: User[] = [], action: Action) => {
   switch (action.type) {
     case FETCH_USERS:
       return action.payload.data;

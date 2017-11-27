@@ -1,6 +1,12 @@
 import { FETCH_CURRENT_USER } from '../actions';
 
-export default function(state = null, action) {
+interface Action extends ReduxAction {
+  payload: {
+    data: AuthToken;
+  }
+}
+
+export default function(state: Auth = null, action: Action) {
   switch (action.type) {
     case FETCH_CURRENT_USER:
       return action.payload.data || false;
