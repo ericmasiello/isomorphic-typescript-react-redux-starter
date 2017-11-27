@@ -6,25 +6,31 @@ import NotFoundPage from './pages/NotFoundPage';
 import AdminsListPage from './pages/AdminsListPage';
 import { RouteConfig } from 'react-router-config';
 
-const Routes: RouteConfig[] = [
+interface RouteConfigWithLoadData extends RouteConfig {
+  component: any; // FIXME
+  loadData?: (store: any) => any;
+  routes?: RouteConfigWithLoadData[];
+}
+
+const Routes: RouteConfigWithLoadData[] = [
   {
-    component: (App.component as React.ComponentType<{}>),
+    ...App,
     routes: [
       {
-        component: (HomePage.component as React.ComponentType<{}>),
+        ...HomePage,
         path: '/',
-        exact: true
+        exact: true,
       },
       {
-        component: (AdminsListPage.component as React.ComponentType<{}>),
+        ...AdminsListPage,
         path: '/admins'
       },
       {
-        component: (UsersListPage.component as React.ComponentType<{}>),
+        ...UsersListPage,
         path: '/users'
       },
       {
-        component: (NotFoundPage.component as React.ComponentType<{}>),
+        ...NotFoundPage,
       }
     ]
   }
