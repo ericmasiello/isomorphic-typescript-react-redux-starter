@@ -1,6 +1,6 @@
-import React from 'react';
+import * as React from 'react';
 
-const Home = () => {
+const Home: React.SFC<{}> = () => {
   return (
     <div className="center-align" style={{ marginTop: '200px' }}>
       <h3>Welcome</h3>
