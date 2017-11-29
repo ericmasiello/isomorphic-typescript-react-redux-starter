@@ -23,7 +23,6 @@ const App: React.SFC<Props> = ({ route }) => {
 export default {
   component: App,
   loadData: ({ dispatch }: Store<any>) => {
-    console.log('calling fetchCurrentUser()');
     return dispatch(fetchCurrentUser());
   }
 };
