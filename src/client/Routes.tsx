@@ -7,7 +7,7 @@ import AdminsListPage from './pages/AdminsListPage';
 import { RouteConfig } from 'react-router-config';
 
 interface RouteConfigWithLoadData extends RouteConfig {
-  component: any; // FIXME
+  component: React.ComponentType<any>;
   loadData?: (store: any) => any;
   routes?: RouteConfigWithLoadData[];
 }
