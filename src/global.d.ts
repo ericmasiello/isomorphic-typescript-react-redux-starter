@@ -26,3 +26,7 @@ interface Window {
   __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: any;
   INITIAL_STATE?: any
 }
+
+interface RequireAuthHOC {
+  (ChildComponent: React.ComponentType<any>): React.ComponentType<any>;
+}

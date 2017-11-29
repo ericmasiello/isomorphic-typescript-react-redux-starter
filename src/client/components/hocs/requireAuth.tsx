@@ -1,9 +1,13 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-export default ChildComponent => {
-  class RequireAuth extends Component {
+interface RequireAuthProps {
+  auth: Auth;
+}
+
+const requireAuthHOC: RequireAuthHOC = (ChildComponent) => {
+  class RequireAuth extends React.Component<RequireAuthProps, {}> {
     render() {
       switch (this.props.auth) {
         case false:
@@ -16,9 +20,11 @@ export default ChildComponent => {
     }
   }
 
-  function mapStateToProps({ auth }) {
+  function mapStateToProps({ auth }: AppState) {
     return { auth };
   }
 
   return connect(mapStateToProps)(RequireAuth);
 };
+
+export default requireAuthHOC;
