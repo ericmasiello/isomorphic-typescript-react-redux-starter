@@ -1,5 +1,4 @@
 // Startup point for the client side application
-import 'babel-polyfill';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
