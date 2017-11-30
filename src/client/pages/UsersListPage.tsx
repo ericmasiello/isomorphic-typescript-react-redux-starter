@@ -17,7 +17,7 @@ class UsersList extends React.Component<Props, {}> {
   }
 
   renderUsers() {
-    return this.props.users.map(user => {
+    return this.props.users.map((user) => {
       return <li key={user.id}>{user.name}</li>;
     });
   }

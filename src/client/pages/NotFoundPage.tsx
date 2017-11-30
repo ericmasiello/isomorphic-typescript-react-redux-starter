@@ -2,7 +2,7 @@ import * as React from 'react';
 
 interface Props {
   staticContext: {
-    notFound?: boolean; 
+    notFound?: boolean;
   };
 }
 
@@ -12,5 +12,5 @@ const NotFoundPage: React.SFC<Props> = ({ staticContext = {} }) => {
 };
 
 export default {
-  component: NotFoundPage
+  component: NotFoundPage,
 };

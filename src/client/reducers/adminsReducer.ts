@@ -8,6 +8,6 @@ const adminsReducer: Reducer<User[]> = (state = [], action) => {
     default:
       return state;
   }
-}
+};
 
 export default adminsReducer;

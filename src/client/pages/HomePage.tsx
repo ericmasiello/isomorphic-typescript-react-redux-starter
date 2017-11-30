@@ -10,5 +10,5 @@ const Home: React.SFC<{}> = () => {
 };
 
 export default {
-  component: Home
+  component: Home,
 };

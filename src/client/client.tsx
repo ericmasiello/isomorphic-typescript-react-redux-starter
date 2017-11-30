@@ -13,13 +13,13 @@ import reducers from './reducers';
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const axiosInstance = axios.create({
-  baseURL: '/api'
+  baseURL: '/api',
 });
 
 const store = createStore(
   reducers,
   window.INITIAL_STATE,
-  composeEnhancers(applyMiddleware(thunk.withExtraArgument(axiosInstance)))
+  composeEnhancers(applyMiddleware(thunk.withExtraArgument(axiosInstance))),
 );
 
 ReactDOM.hydrate(
@@ -28,5 +28,5 @@ ReactDOM.hydrate(
       <div>{renderRoutes(Routes)}</div>
     </BrowserRouter>
   </Provider>,
-  document.querySelector('#root')
+  document.querySelector('#root'),
 );
