@@ -7,7 +7,7 @@ export const fetchUsers: ThunkActionCreator<User[]> = () => async (dispatch, get
 
   dispatch({
     type: FETCH_USERS,
-    payload: res
+    payload: res,
   });
 };
 
@@ -17,7 +17,7 @@ export const fetchCurrentUser: ThunkActionCreator<Auth> = () => async (dispatch,
 
   dispatch({
     type: FETCH_CURRENT_USER,
-    payload: res
+    payload: res,
   });
 };
 
@@ -27,6 +27,6 @@ export const fetchAdmins: ThunkActionCreator<User[]> = () => async (dispatch, ge
 
   dispatch({
     type: FETCH_ADMINS,
-    payload: res
+    payload: res,
   });
 };

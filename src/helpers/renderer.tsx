@@ -15,11 +15,12 @@ export default (req: Request, store: Store<AppState>, context: object) => {
       <StaticRouter location={req.path} context={context}>
         <div>{renderRoutes(Routes)}</div>
       </StaticRouter>
-    </Provider>
+    </Provider>,
   );
 
   const helmet = Helmet.renderStatic();
 
+  /* tslint:disable max-line-length */
   return `
     <html>
       <head>
@@ -36,4 +37,5 @@ export default (req: Request, store: Store<AppState>, context: object) => {
       </body>
     </html>
   `;
+  /* tslint:enable max-line-length */
 };

@@ -17,7 +17,7 @@ class AdminsListPage extends React.Component<Props, {}> {
   }
 
   renderAdmins() {
-    return this.props.admins.map(admin => {
+    return this.props.admins.map((admin) => {
       return <li key={admin.id}>{admin.name}</li>;
     });
   }
@@ -38,7 +38,7 @@ function mapStateToProps({ admins }: AppState) {
 
 export default {
   component: connect(mapStateToProps, { fetchAdmins })(
-    requireAuth(AdminsListPage)
+    requireAuth(AdminsListPage),
   ),
   loadData: ({ dispatch }: Store<User[]>) => dispatch(fetchAdmins())
 };

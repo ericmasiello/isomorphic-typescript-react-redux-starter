@@ -6,5 +6,5 @@ import adminsReducer from './adminsReducer';
 export default <Reducer<AppState>>combineReducers({
   users: usersReducer,
   auth: authReducer,
-  admins: adminsReducer
+  admins: adminsReducer,
 });

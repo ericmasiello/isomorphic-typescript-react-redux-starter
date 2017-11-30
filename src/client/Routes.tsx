@@ -24,17 +24,17 @@ const Routes: RouteConfigWithLoadData[] = [
       },
       {
         ...AdminsListPage,
-        path: '/admins'
+        path: '/admins',
       },
       {
         ...UsersListPage,
-        path: '/users'
+        path: '/users',
       },
       {
         ...NotFoundPage,
-      }
-    ]
-  }
+      },
+    ],
+  },
 ];
 
 export default Routes;
