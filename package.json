@@ -53,7 +53,10 @@
     "@types/redux-thunk": "~2.1.0",
     "@types/serialize-javascript": "~1.3.2",
     "awesome-typescript-loader": "~3.4.0",
+<<<<<<< 7817144d5519943e79cb3bb72dfa0a107c25e94f
     "husky": "~0.14.3",
+=======
+>>>>>>> Install tslint, add config, and fix linting errors
     "tslint": "~5.8.0",
     "tslint-config-airbnb": "~5.4.2",
     "tslint-loader": "~3.5.3",
