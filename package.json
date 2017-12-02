@@ -14,7 +14,8 @@
     "start": "node build/bundle.js",
     "lint": "tslint 'src/**/*.ts?(x)' --format stylish -p tsconfig.json",
     "lint:fix": "npm run lint -- --fix",
-    "prepush": "npm run lint"
+    "test": "jest",
+    "prepush": "npm-run-all --parallel test lint"
   },
   "author": "",
   "license": "ISC",
