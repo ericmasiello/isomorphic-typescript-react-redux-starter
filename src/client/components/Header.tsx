@@ -6,7 +6,7 @@ interface Props {
   auth: Auth;
 }
 
-const Header: React.SFC<Props> = ({ auth }) => {
+export const Header: React.SFC<Props> = ({ auth }) => {
   const authButton = auth ? (
     <a href="/api/logout">Logout</a>
   ) : (
