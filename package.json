@@ -12,7 +12,7 @@
     "prod:build-client": "webpack --config webpack.client.js -p",
     "build": "npm-run-all --parallel prod:*",
     "start": "node build/bundle.js",
-    "lint": "tslint 'src/**/*.ts?(x)' --format stylish -p tsconfig.json --project",
+    "lint": "tslint 'src/**/*.ts?(x)' --format stylish -p tsconfig.json",
     "lint:fix": "npm run lint -- --fix"
   },
   "author": "",
