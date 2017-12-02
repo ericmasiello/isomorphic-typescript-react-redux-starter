@@ -15,6 +15,11 @@ module.exports = {
     rules: [
       {
         test: /\.tsx?$/,
+        enforce: 'pre',
+        loader: 'tslint-loader',
+      },
+      {
+        test: /\.tsx?$/,
         include: [PATHS.src],
         use: 'awesome-typescript-loader',
       },
