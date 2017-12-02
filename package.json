@@ -15,7 +15,9 @@
     "lint": "tslint 'src/**/*.ts?(x)' --format stylish -p tsconfig.json",
     "lint:fix": "npm run lint -- --fix",
     "test": "jest",
-    "prepush": "npm-run-all --parallel test lint"
+    "test:watch": "npm run test -- --watch",
+    "test:coverage": "npm run test -- --coverage",
+    "prepush": "npm-run-all --parallel test:coverage lint"
   },
   "author": "",
   "license": "ISC",
@@ -72,6 +74,9 @@
       "tsx",
       "js"
     ],
+    "collectCoverageFrom": [
+      "**/*.{ts,tsx}"
+    ],
     "mapCoverage": true,
     "transform": {
       "^.+\\.(j|t)sx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
@@ -81,14 +86,15 @@
     ],
     "coveragePathIgnorePatterns": [
       "/node_modules/",
-      "/test/"
+      "/test/",
+      "/src/global.d.ts"
     ],
     "coverageThreshold": {
       "global": {
-        "branches": 97,
-        "functions": 97,
-        "lines": 97,
-        "statements": 97
+        "branches": 95,
+        "functions": 95,
+        "lines": 95,
+        "statements": 95
       }
     },
     "setupFiles": [
