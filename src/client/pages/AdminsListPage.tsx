@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Store } from 'redux';
+import { ThunkAction } from 'redux-thunk';
 import { fetchAdmins } from '../actions';
 import requireAuth from '../components/hocs/requireAuth';
 
 interface Props {
-  fetchAdmins: () => (dispatch: any, getState: any, api: any) => Promise<void>;
+  fetchAdmins: () => ThunkAction<Promise<User[]>, User[], {}>;
   admins: User[];
 }
 
@@ -38,5 +39,5 @@ export default {
   component: connect(mapStateToProps, { fetchAdmins })(
     requireAuth(AdminsListPage)
   ),
-  loadData: ({ dispatch }: Store<any>) => dispatch(fetchAdmins())
+  loadData: ({ dispatch }: Store<User[]>) => dispatch(fetchAdmins())
 };

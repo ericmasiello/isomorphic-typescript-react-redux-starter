@@ -1,10 +1,13 @@
 import * as express from 'express';
-import { matchRoutes } from 'react-router-config';
+import { matchRoutes, RouteConfig } from 'react-router-config';
 import * as proxy from 'express-http-proxy';
 import { RequestOptions } from 'http';
-import Routes from './client/Routes';
+import { Store } from 'redux';
+import Routes, { RouteConfigWithLoadData } from './client/Routes';
 import renderer from './helpers/renderer';
 import createStore from './helpers/createStore';
+import { ThunkAction } from 'redux-thunk';
+import { AxiosInstance } from 'axios';
 
 const app = express();
 
@@ -21,13 +24,16 @@ app.use(
 );
 app.use(express.static('public'));
 app.get('*', (req, res) => {
-  const store = createStore(req);
-
+  const store = <Store<AppState>>createStore(req);
   const promises = <Promise<{}>[]>matchRoutes(Routes, req.path)
-    .map(({ route }: any) => {
-      return route.loadData ? route.loadData(store) : null;
+    .map(matchedRoute => {
+      const route = <RouteConfigWithLoadData>matchedRoute.route;
+      if (route.loadData) {
+        return route.loadData(store);
+      }
+      return null;
     })
-    .map((promise: Promise<any>) => {
+    .map((promise) => {
       if (promise) {
         return new Promise((resolve, reject) => {
           promise.then(resolve).catch(resolve);

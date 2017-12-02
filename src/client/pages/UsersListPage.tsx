@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { ThunkAction } from 'redux-thunk';
 import { fetchUsers } from '../actions';
 import { Store } from 'redux';
 import { Helmet } from 'react-helmet';
 
 interface Props {
-  fetchUsers: () => (dispatch: any, getState: any, api: any) => Promise<void>;
+  fetchUsers: () => ThunkAction<Promise<User[]>, User[], {}>;
   users: User[];
 }
 
@@ -44,11 +45,7 @@ function mapStateToProps(state: AppState) {
   return { users: state.users };
 }
 
-function loadData(store: Store<any>) {
-  return store.dispatch(fetchUsers());
-}
-
 export default {
-  loadData,
+  loadData: ({ dispatch }: Store<User[]>) => dispatch(fetchUsers()),
   component: connect(mapStateToProps, { fetchUsers })(UsersList)
 };

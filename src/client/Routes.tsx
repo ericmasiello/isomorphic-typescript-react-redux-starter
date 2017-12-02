@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Store } from 'redux';
 import App from './App';
 import HomePage from './pages/HomePage';
 import UsersListPage from './pages/UsersListPage';
@@ -6,9 +7,9 @@ import NotFoundPage from './pages/NotFoundPage';
 import AdminsListPage from './pages/AdminsListPage';
 import { RouteConfig } from 'react-router-config';
 
-interface RouteConfigWithLoadData extends RouteConfig {
+export interface RouteConfigWithLoadData extends RouteConfig {
   component: React.ComponentType<any>;
-  loadData?: (store: any) => any;
+  loadData?: (store: Store<any>) => Promise<any>;
   routes?: RouteConfigWithLoadData[];
 }
 

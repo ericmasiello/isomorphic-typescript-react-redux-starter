@@ -9,7 +9,7 @@ import Routes from '../client/Routes';
 import { Request } from 'express';
 import { Store } from 'redux';
 
-export default (req: Request, store: Store<any>, context: object) => {
+export default (req: Request, store: Store<AppState>, context: object) => {
   const content = renderToString(
     <Provider store={store}>
       <StaticRouter location={req.path} context={context}>

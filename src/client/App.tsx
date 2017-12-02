@@ -7,7 +7,7 @@ import { Store } from 'redux';
 
 interface Props {
   route: {
-    routes: any
+    routes: RouteConfig[]
   }
 }
 
@@ -22,7 +22,7 @@ const App: React.SFC<Props> = ({ route }) => {
 
 export default {
   component: App,
-  loadData: ({ dispatch }: Store<any>) => {
+  loadData: ({ dispatch }: Store<Auth>) => {
     return dispatch(fetchCurrentUser());
   }
 };

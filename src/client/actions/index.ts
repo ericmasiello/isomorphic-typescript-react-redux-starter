@@ -24,7 +24,7 @@ export const fetchCurrentUser: ThunkActionCreator<Auth> = () => async (dispatch,
 };
 
 export const FETCH_ADMINS = 'fetch_admins';
-export const fetchAdmins: ThunkActionCreator<Auth> = () => async (dispatch, getState, api) => {
+export const fetchAdmins: ThunkActionCreator<User[]> = () => async (dispatch, getState, api) => {
   const res = await api.get('/admins');
 
   dispatch({
