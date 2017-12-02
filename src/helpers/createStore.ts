@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware, StoreCreator } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import axios from 'axios';
 import { Request } from 'express';
@@ -17,7 +17,7 @@ export default (req: Request) => {
       admins: [],
       auth: null,
     },
-    applyMiddleware(thunk.withExtraArgument(axiosInstance))
+    applyMiddleware(thunk.withExtraArgument(axiosInstance)),
   );
 
   return store;

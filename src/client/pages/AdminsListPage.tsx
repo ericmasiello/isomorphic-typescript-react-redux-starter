@@ -40,5 +40,5 @@ export default {
   component: connect(mapStateToProps, { fetchAdmins })(
     requireAuth(AdminsListPage),
   ),
-  loadData: ({ dispatch }: Store<User[]>) => dispatch(fetchAdmins())
+  loadData: ({ dispatch }: Store<User[]>) => dispatch(fetchAdmins()),
 };
