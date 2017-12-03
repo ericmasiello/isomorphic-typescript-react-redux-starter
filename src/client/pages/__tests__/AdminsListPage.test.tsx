@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
 import { ThunkAction } from 'redux-thunk';
-import admins, { AdminsListPage } from '../AdminsListPage';
+import * as admins from '../AdminsListPage';
 
-const { loadData } = admins;
+const { default: { loadData }, AdminsListPage } = admins;
 
 describe('AdminsListPage', () => {
   const fetchAdmins = jest.fn(() => () => {}) as () => ThunkAction<Promise<User[]>, User[], {}>;
