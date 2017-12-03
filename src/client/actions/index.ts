@@ -3,12 +3,19 @@ import { ThunkActionCreator } from '../../types.d';
 
 export const FETCH_USERS = 'fetch_users';
 export const fetchUsers: ThunkActionCreator<User[]> = () => async (dispatch, getState, api) => {
-  const res = await api.get('/users');
-
-  dispatch({
-    type: FETCH_USERS,
-    payload: res,
-  });
+  try {
+    const res = await api.get('/users');
+    dispatch({
+      type: FETCH_USERS,
+      payload: res,
+    });
+  } catch (err) {
+    dispatch({
+      type: FETCH_USERS,
+      payload: err,
+      error: true,
+    });
+  }
 };
 
 export const FETCH_CURRENT_USER = 'fetch_current_user';
