@@ -41,8 +41,8 @@ export class UsersListPage extends React.Component<Props, {}> {
   }
 }
 
-function mapStateToProps(state: AppState) {
-  return { users: state.users };
+function mapStateToProps({ users }: AppState) {
+  return { users };
 }
 
 export default {
