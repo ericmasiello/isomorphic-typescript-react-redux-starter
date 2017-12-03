@@ -10,7 +10,7 @@ interface Props {
   users: User[];
 }
 
-class UsersList extends React.Component<Props, {}> {
+export class UsersListPage extends React.Component<Props, {}> {
   componentDidMount() {
     this.props.fetchUsers();
   }
@@ -47,5 +47,5 @@ function mapStateToProps(state: AppState) {
 
 export default {
   loadData: ({ dispatch }: Store<User[]>) => dispatch(fetchUsers()),
-  component: connect(mapStateToProps, { fetchUsers })(UsersList),
+  component: connect(mapStateToProps, { fetchUsers })(UsersListPage),
 };
