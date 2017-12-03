@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 interface Props {
-  staticContext: {
+  staticContext?: {
     notFound?: boolean;
   };
 }
