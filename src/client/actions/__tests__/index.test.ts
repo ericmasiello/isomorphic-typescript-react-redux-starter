@@ -85,3 +85,42 @@ describe('fetchAdmins', () => {
     });
   });
 });
+
+describe('fetchCurrentUser', () => {
+  beforeEach(() => {
+    dispatch = jest.fn() as Dispatch<User[]>;
+    getState = jest.fn() as () => User[];
+    api = {} as AxiosInstance;
+  });
+
+  test('should dispatch an action when data is returned', () => {
+    api.get = jest.fn(() => Promise.resolve(mockUsers));
+
+    return actions.fetchCurrentUser()(dispatch, getState, api).then(() => {
+      expect(dispatch).toBeCalledWith({
+        type: actions.FETCH_CURRENT_USER,
+        payload: mockUsers,
+      });
+    });
+  });
+
+  test('should dispatch an error when api cannot get data', () => {
+    api.get = jest.fn(() => Promise.reject(error));
+
+    return actions.fetchCurrentUser()(dispatch, getState, api).then(() => {
+      expect(dispatch).toBeCalledWith({
+        type: actions.FETCH_CURRENT_USER,
+        payload: error,
+        error: true,
+      });
+    });
+  });
+
+  test('should call /current_user endpoint', () => {
+    api.get = jest.fn(() => Promise.resolve());
+
+    return actions.fetchCurrentUser()(dispatch, getState, api).then(() => {
+      expect(api.get).toBeCalledWith('/current_user');
+    });
+  });
+});
