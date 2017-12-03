@@ -1,24 +1,10 @@
-import to from 'await-to-js';
 import { ThunkActionCreator } from '../../types.d';
+import { dispatcher } from '../../helpers/actions';
 
 export const FETCH_USERS = 'fetch_users';
-export const fetchUsers: ThunkActionCreator<User[]> = () => async (dispatch, getState, api) => {
-  const [err, res] = await to(api.get('/users'));
-
-  if (err) {
-    dispatch({
-      type: FETCH_USERS,
-      payload: err,
-      error: true,
-    });
-    return;
-  }
-
-  dispatch({
-    type: FETCH_USERS,
-    payload: res,
-  });
-};
+export const fetchUsers: ThunkActionCreator<User[]> =
+  () => async (dispatch, getState, api) =>
+  dispatcher<User[]>(dispatch, FETCH_USERS)(api.get('/users'));
 
 export const FETCH_CURRENT_USER = 'fetch_current_user';
 export const fetchCurrentUser: ThunkActionCreator<Auth> = () => async (dispatch, getState, api) => {
@@ -31,11 +17,6 @@ export const fetchCurrentUser: ThunkActionCreator<Auth> = () => async (dispatch,
 };
 
 export const FETCH_ADMINS = 'fetch_admins';
-export const fetchAdmins: ThunkActionCreator<User[]> = () => async (dispatch, getState, api) => {
-  const res = await api.get('/admins');
-
-  dispatch({
-    type: FETCH_ADMINS,
-    payload: res,
-  });
-};
+export const fetchAdmins: ThunkActionCreator<User[]> =
+  () => async (dispatch, getState, api) =>
+  dispatcher<User[]>(dispatch, FETCH_ADMINS)(api.get('/admins'));
