@@ -2,13 +2,13 @@ import * as actions from '../index';
 import { AxiosInstance } from 'axios';
 import { Dispatch } from 'redux';
 
-describe('fetchUsers', () => {
-  const mockUsers: User[] = [{ id: '123', name: 'Eric' }];
-  const error = new Error('There was an error :(');
-  let dispatch: any;
-  let getState: any;
-  let api: any;
+const mockUsers: User[] = [{ id: '123', name: 'Eric' }];
+const error = new Error('There was an error :(');
+let dispatch: any;
+let getState: any;
+let api: any;
 
+describe('fetchUsers', () => {
   beforeEach(() => {
     dispatch = jest.fn() as Dispatch<User[]>;
     getState = jest.fn() as () => User[];
@@ -48,12 +48,6 @@ describe('fetchUsers', () => {
 });
 
 describe('fetchAdmins', () => {
-  const mockUsers: User[] = [{ id: '123', name: 'Eric' }];
-  const error = new Error('There was an error :(');
-  let dispatch: any;
-  let getState: any;
-  let api: any;
-
   beforeEach(() => {
     dispatch = jest.fn() as Dispatch<User[]>;
     getState = jest.fn() as () => User[];
