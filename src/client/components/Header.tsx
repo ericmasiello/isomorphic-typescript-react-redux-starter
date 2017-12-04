@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 interface Props {
-  auth: AuthToken;
+  auth: Auth;
 }
 
 const Header: React.SFC<Props> = ({ auth }) => {
