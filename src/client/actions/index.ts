@@ -1,5 +1,5 @@
 
-import { ThunkActionCreator } from '../../types.d'
+import { ThunkActionCreator } from '../../types.d';
 
 export const FETCH_USERS = 'fetch_users';
 export const fetchUsers: ThunkActionCreator<User[]> = () => async (dispatch, getState, api) => {
