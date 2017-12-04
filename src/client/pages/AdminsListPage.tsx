@@ -4,9 +4,10 @@ import { Store } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 import { fetchAdmins } from '../actions';
 import requireAuth from '../components/hocs/requireAuth';
+import { ThunkActionCreator } from '../../types.d'
 
 interface Props {
-  fetchAdmins: () => ThunkAction<Promise<User[]>, User[], {}>;
+  fetchAdmins: ThunkActionCreator<User[]>;
   admins: User[];
 }
 

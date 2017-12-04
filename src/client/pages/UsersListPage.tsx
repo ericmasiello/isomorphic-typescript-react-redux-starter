@@ -4,9 +4,10 @@ import { ThunkAction } from 'redux-thunk';
 import { fetchUsers } from '../actions';
 import { Store } from 'redux';
 import { Helmet } from 'react-helmet';
+import { ThunkActionCreator } from '../../types.d'
 
 interface Props {
-  fetchUsers: () => ThunkAction<Promise<User[]>, User[], {}>;
+  fetchUsers: ThunkActionCreator<User[]>;
   users: User[];
 }
 

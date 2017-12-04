@@ -1,7 +1,5 @@
-import { ThunkAction } from 'redux-thunk';
-import { AxiosInstance } from 'axios';
 
-type ThunkActionCreator<S> = () => ThunkAction<Promise<any>, S, AxiosInstance>;
+import { ThunkActionCreator } from '../../types.d'
 
 export const FETCH_USERS = 'fetch_users';
 export const fetchUsers: ThunkActionCreator<User[]> = () => async (dispatch, getState, api) => {
