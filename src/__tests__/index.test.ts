@@ -7,5 +7,5 @@ const mockListen = jest.fn();
 (app.listen as any).mockImplementation(mockListen);
 
 test('should start the app', () => {
-  expect(app.listen).toBeCalledWith(app.get('port'), appStartup);
+  expect(app.listen).toBeCalledWith(app.get('port') || 3000, appStartup);
 });
