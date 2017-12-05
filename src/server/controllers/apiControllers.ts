@@ -7,5 +7,5 @@ export const proxyController = proxy('http://react-ssr-api.herokuapp.com', {
       opts.headers['x-forwarded-host'] = 'localhost:3000';
     }
     return opts;
-  }
+  },
 });
