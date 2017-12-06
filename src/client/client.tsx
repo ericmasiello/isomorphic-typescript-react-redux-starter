@@ -22,11 +22,15 @@ const store = createStore(
   composeEnhancers(applyMiddleware(thunk.withExtraArgument(axiosInstance))),
 );
 
-ReactDOM.hydrate(
+export const client = (
   <Provider store={store}>
     <BrowserRouter>
       <div>{renderRoutes(Routes)}</div>
     </BrowserRouter>
-  </Provider>,
+  </Provider>
+);
+
+ReactDOM.hydrate(
+  client,
   document.querySelector('#root'),
 );
