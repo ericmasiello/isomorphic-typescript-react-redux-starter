@@ -10,7 +10,7 @@ interface Props {
   };
 }
 
-export const App: React.SFC<Props> = ({ route }) => {
+const App: React.SFC<Props> = ({ route }) => {
   return (
     <div>
       <Header />
