@@ -1,4 +1,3 @@
-import { createStore } from 'redux';
 import * as ReactDOM from 'react-dom';
 import { client } from '../client';
 jest.mock('react-dom');
