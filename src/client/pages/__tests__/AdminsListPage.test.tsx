@@ -12,7 +12,7 @@ const mockAction = {
   payload: 'fetching admins',
 };
 const mockFetchAdmins = jest.fn(() => mockAction);
-(fetchAdmins as any).mockImplementation(mockFetchAdmins);
+(fetchAdmins as jest.Mock<{}>).mockImplementation(mockFetchAdmins);
 
 const {
   loadData,

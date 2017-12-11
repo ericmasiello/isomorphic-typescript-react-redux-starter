@@ -28,8 +28,8 @@ const matchedRoutesWithoutLoadData = [
 const rendered = '<html>The website!</html>';
 const store = { the: 'store' };
 
-(renderer as any).mockImplementation(() => rendered);
-(createStore as any).mockImplementation(jest.fn(() => store));
+(renderer as jest.Mock<{}>).mockImplementation(() => rendered);
+(createStore as jest.Mock<{}>).mockImplementation(jest.fn(() => store));
 
 const req = {} as Request;
 req.path = '/the/path';
@@ -41,14 +41,14 @@ res.redirect = jest.fn();
 res.status = jest.fn();
 
 test('should call createStore with the request object', () => {
-  (matchRoutes as any).mockImplementation(() => matchedRoutesWithLoadData);
+  (matchRoutes as jest.Mock<{}>).mockImplementation(() => matchedRoutesWithLoadData);
   return uiRootController(req, res).then(() => {
     expect(createStore).toBeCalledWith(req);
   });
 });
 
 test('should call matchRoutes', () => {
-  (matchRoutes as any).mockImplementation(() => matchedRoutesWithLoadData);
+  (matchRoutes as jest.Mock<{}>).mockImplementation(() => matchedRoutesWithLoadData);
   return uiRootController(req, res).then(() => {
     expect(matchRoutes).toBeCalledWith(Routes, req.path);
   });
@@ -56,14 +56,14 @@ test('should call matchRoutes', () => {
 
 describe('send rendered response', () => {
   test('should support routes with custom data to load', () => {
-    (matchRoutes as any).mockImplementation(() => matchedRoutesWithLoadData);
+    (matchRoutes as jest.Mock<{}>).mockImplementation(() => matchedRoutesWithLoadData);
     return uiRootController(req, res).then(() => {
       expect(res.send).toBeCalledWith(rendered);
       expect(matchedRoutesWithLoadData[0].route.loadData).toBeCalledWith(store);
     });
   });
   test('should support routes without custom data to load', () => {
-    (matchRoutes as any).mockImplementation(() => matchedRoutesWithoutLoadData);
+    (matchRoutes as jest.Mock<{}>).mockImplementation(() => matchedRoutesWithoutLoadData);
     return uiRootController(req, res).then(() => {
       expect(res.send).toBeCalledWith(rendered);
     });
@@ -72,11 +72,11 @@ describe('send rendered response', () => {
 
 describe('renderer', () => {
   beforeEach(() => {
-    (matchRoutes as any).mockImplementation(() => matchedRoutesWithLoadData);
+    (matchRoutes as jest.Mock<{}>).mockImplementation(() => matchedRoutesWithLoadData);
   });
 
   test('should redirect when a url is present in context', () => {
-    (renderer as any).mockImplementation((req: any, store: any, context: any) => {
+    (renderer as jest.Mock<{}>).mockImplementation((req: any, store: any, context: any) => {
       context.url = 'the/url';
       return rendered;
     });
@@ -86,7 +86,7 @@ describe('renderer', () => {
   });
 
   test('should set status to 404 when notFound is present on context', () => {
-    (renderer as any).mockImplementation((req: any, store: any, context: any) => {
+    (renderer as jest.Mock<{}>).mockImplementation((req: any, store: any, context: any) => {
       context.notFound = true;
       return rendered;
     });
