@@ -13,7 +13,7 @@ const mockAction = {
 };
 const mockFetchUsers = jest.fn(() => mockAction);
 
-(fetchUsers as any).mockImplementation(mockFetchUsers);
+(fetchUsers as jest.Mock<{}>).mockImplementation(mockFetchUsers);
 
 const {
   loadData,
