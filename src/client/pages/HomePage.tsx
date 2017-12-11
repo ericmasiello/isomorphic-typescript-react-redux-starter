@@ -1,8 +1,13 @@
 import * as React from 'react';
+import styled from 'styled-components';
 
-const Home: React.SFC<{}> = () => {
+interface Props {
+  className?: string;
+}
+
+const Home: React.SFC<Props> = ({ className }) => {
   return (
-    <div className="center-align" style={{ marginTop: '200px' }}>
+    <div className={className}>
       <h3>Welcome</h3>
       <p>Check out these awesome features</p>
     </div>
@@ -10,5 +15,8 @@ const Home: React.SFC<{}> = () => {
 };
 
 export default {
-  component: Home,
+  component: styled(Home)`
+    text-align: center;
+    margin-top: 200px;
+  `,
 };
