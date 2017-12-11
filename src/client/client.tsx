@@ -7,8 +7,16 @@ import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { renderRoutes } from 'react-router-config';
 import axios from 'axios';
+import { injectGlobal } from 'styled-components';
 import Routes from './Routes';
 import reducers from './reducers';
+import base from './styles/base';
+import helpers from './styles/helpers';
+
+injectGlobal`
+  ${base}
+  ${helpers}
+`;
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
