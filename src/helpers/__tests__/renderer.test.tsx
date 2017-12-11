@@ -1,6 +1,7 @@
 import renderer from '../renderer';
 import * as express from 'express';
 import createStore from '../createStore';
+
 jest.mock('react-helmet', () => {
   const obj: any = { Helmet: {} };
   obj.Helmet.renderStatic = jest.fn(() => ({
@@ -9,6 +10,8 @@ jest.mock('react-helmet', () => {
   }));
   return obj;
 });
+
+jest.mock('../../client/Routes', () => ([]));
 
 test('should render an html string', () => {
   const req = {} as express.Request;

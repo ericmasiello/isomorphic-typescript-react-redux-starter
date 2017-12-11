@@ -5,19 +5,24 @@ import { Provider } from 'react-redux';
 import { renderRoutes } from 'react-router-config';
 import * as serialize from 'serialize-javascript';
 import { Helmet } from 'react-helmet';
-import Routes from '../client/Routes';
 import { Request } from 'express';
 import { Store } from 'redux';
+import { ServerStyleSheet } from 'styled-components';
+import Routes from '../client/Routes';
 
 export default (req: Request, store: Store<AppState>, context: object) => {
-  const content = renderToString(
+
+  const app = (
     <Provider store={store}>
       <StaticRouter location={req.path} context={context}>
         <div>{renderRoutes(Routes)}</div>
       </StaticRouter>
-    </Provider>,
+    </Provider>
   );
 
+  const sheet = new ServerStyleSheet();
+  const content = renderToString(sheet.collectStyles(app));
+  const styleTags = sheet.getStyleTags();
   const helmet = Helmet.renderStatic();
 
   /* tslint:disable max-line-length */
@@ -26,7 +31,8 @@ export default (req: Request, store: Store<AppState>, context: object) => {
       <head>
         ${helmet.title.toString()}
         ${helmet.meta.toString()}
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" />
+        ${styleTags}
       </head>
       <body>
         <div id="root">${content}</div>
