@@ -1,10 +1,12 @@
 const path = require('path');
+const merge = require('webpack-merge');
+const parts = require('./parts');
 
 const PATHS = {
-  src: path.join(__dirname, 'src'),
+  src: path.join(__dirname, '/../src'),
 };
 
-module.exports = {
+module.exports = merge({
   devtool: 'source-map',
   resolve: {
     extensions: ['.js', '.json', '.ts', '.tsx'],
@@ -25,4 +27,8 @@ module.exports = {
       },
     ]
   }
-};
+}, parts.loadImages({
+  options: {
+    limit: 8192,
+  }
+}));
