@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import Logo from './Logo';
 import { HeaderList, HeaderListItem } from './HeaderList';
+import * as bgImage from '../images/background.jpg';
 
 interface Props {
   auth: Auth;
@@ -50,6 +51,8 @@ function mapStateToProps({ auth }: Props) {
 
 export default connect(mapStateToProps)(styled(Header)`
   color: #fff;
+  background-image: url(${bgImage});
+  background-size: cover;
   background-color: #ee6e73;
   width: 100%;
   height: 56px;
