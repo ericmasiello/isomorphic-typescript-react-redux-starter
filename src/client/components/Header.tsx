@@ -4,18 +4,12 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import Logo from './Logo';
 import { HeaderList, HeaderListItem } from './HeaderList';
+import * as bgImage from '../images/background.jpg';
 
 interface Props {
   auth: Auth;
   className?: string;
 }
-
-const HeaderWrapper = styled.div`
-  position: relative;
-  height: 100%;
-`;
-
-HeaderWrapper.displayName = 'HeaderWrapper';
 
 export const Header: React.SFC<Props> = ({ auth, className }) => {
   const authButton = auth ? (
@@ -26,20 +20,18 @@ export const Header: React.SFC<Props> = ({ auth, className }) => {
 
   return (
     <nav className={className}>
-      <HeaderWrapper>
-        <Logo to="/">
-          React SSR
-        </Logo>
-        <HeaderList className="right">
-          <HeaderListItem>
-            <Link to="/users">Users</Link>
-          </HeaderListItem>
-          <HeaderListItem>
-            <Link to="/admins">Admins</Link>
-          </HeaderListItem>
-          <HeaderListItem>{authButton}</HeaderListItem>
-        </HeaderList>
-      </HeaderWrapper>
+      <Logo to="/">
+        Starter App
+      </Logo>
+      <HeaderList className="right">
+        <HeaderListItem>
+          <Link to="/users">Users</Link>
+        </HeaderListItem>
+        <HeaderListItem>
+          <Link to="/admins">Admins</Link>
+        </HeaderListItem>
+        <HeaderListItem>{authButton}</HeaderListItem>
+      </HeaderList>
     </nav>
   );
 };
@@ -50,13 +42,15 @@ function mapStateToProps({ auth }: Props) {
 
 export default connect(mapStateToProps)(styled(Header)`
   color: #fff;
-  background-color: #ee6e73;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url(${bgImage});
+  background-size: cover;
   width: 100%;
-  height: 56px;
-  line-height: 56px;
+  min-height: 56px;
 
   @media only screen and (min-width: 601px) {
-    height: 64px;
-    line-height: 64px;
+    min-height: 100px;
   }
 `);
