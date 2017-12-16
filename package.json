@@ -42,7 +42,6 @@
     "styled-components": "~2.2.4",
     "webpack": "3.5.6",
     "webpack-dev-server": "2.8.2",
-    "webpack-merge": "4.1.0",
     "webpack-node-externals": "1.6.0"
   },
   "devDependencies": {
@@ -62,7 +61,9 @@
     "awesome-typescript-loader": "~3.4.0",
     "enzyme": "~3.2.0",
     "enzyme-adapter-react-16": "~1.1.0",
+    "file-loader": "~1.1.5",
     "husky": "~0.14.3",
+    "image-webpack-loader": "~3.4.2",
     "jest": "~21.2.1",
     "jest-styled-components": "~4.9.0",
     "ts-jest": "~21.2.4",
@@ -70,7 +71,8 @@
     "tslint-config-airbnb": "~5.4.2",
     "tslint-loader": "~3.5.3",
     "tslint-react": "~3.2.0",
-    "typescript": "~2.6.1"
+    "typescript": "~2.6.1",
+    "webpack-merge": "~4.1.0"
   },
   "jest": {
     "moduleFileExtensions": [
@@ -104,6 +106,9 @@
     },
     "setupFiles": [
       "./test/setup.js"
-    ]
+    ],
+    "moduleNameMapper": {
+      "\\.(css|jpg|png)$": "<rootDir>/test/empty-module.js"
+    }
   }
 }

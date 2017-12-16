@@ -1,5 +1,20 @@
 declare module 'express-http-proxy';
 
+declare module '*.jpg' {
+  const value: any;
+  export = value;
+}
+
+declare module '*.png' {
+  const value: any;
+  export = value;
+}
+
+declare module '*.svg' {
+  const value: any;
+  export = value;
+}
+
 type Auth = AuthToken | null | false;
 
 interface AppState {
