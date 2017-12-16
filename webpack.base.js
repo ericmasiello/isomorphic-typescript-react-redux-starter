@@ -1,9 +1,8 @@
 const path = require('path');
 const merge = require('webpack-merge');
-const parts = require('./parts');
 
 const PATHS = {
-  src: path.join(__dirname, '/../src'),
+  src: path.join(__dirname, 'src'),
 };
 
 module.exports = merge({
@@ -25,10 +24,16 @@ module.exports = merge({
         include: [PATHS.src],
         use: 'awesome-typescript-loader',
       },
+      {
+        test: /\.(gif|png|jpe?g|svg)$/i,
+        include: [PATHS.src],
+        use: [
+          'file-loader',
+          {
+            loader: 'image-webpack-loader',
+          },
+        ],
+      },
     ]
   }
-}, parts.loadImages({
-  options: {
-    limit: 8192,
-  }
-}));
+});
