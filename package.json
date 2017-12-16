@@ -106,6 +106,9 @@
     },
     "setupFiles": [
       "./test/setup.js"
-    ]
+    ],
+    "moduleNameMapper": {
+      "\\.(css|jpg|png)$": "<rootDir>/test/empty-module.js"
+    }
   }
 }
