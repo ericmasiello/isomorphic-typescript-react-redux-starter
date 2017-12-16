@@ -2,15 +2,7 @@ const parts = {
   loadImages({ include, exclude, options } = {}) {
     return ({
       module: {
-        rules: [/*{
-          test: /\.(png|jpg|jpeg|svg)$/,
-          include,
-          exclude,
-          use: [{
-              loader: 'url-loader',
-              options,
-            }]
-        }, */{
+        rules: [{
           test: /\.(gif|png|jpe?g|svg)$/i,
           include,
           exclude,
@@ -18,9 +10,7 @@ const parts = {
             'file-loader',
             {
               loader: 'image-webpack-loader',
-              options: {
-                bypassOnDebug: true,
-              },
+              options,
             },
           ],
         }],
