@@ -1,6 +1,6 @@
 const path = require('path');
 const merge = require('webpack-merge');
-const baseConfig = require('./webpack/webpack.base.js');
+const baseConfig = require('./webpack.base.js');
 
 const config = {
   // Tell webpack the root file of our

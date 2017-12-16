@@ -1,39 +1,9 @@
 
 /* tslint:disable max-line-length */
 export default `
-  @font-face {
-    font-family: 'Roboto';
-    src: local(Roboto Thin), url('../fonts/roboto/Roboto-Thin.woff2') format('woff2'), url('../fonts/roboto/Roboto-Thin.woff') format('woff');
-    font-weight: 100;
-  }
-
-  @font-face {
-    font-family: 'Roboto';
-    src: local(Roboto Light), url('../fonts/roboto/Roboto-Light.woff2') format('woff2'), url('../fonts/roboto/Roboto-Light.woff') format('woff');
-    font-weight: 300;
-  }
-
-  @font-face {
-    font-family: 'Roboto';
-    src: local(Roboto Regular), url('../fonts/roboto/Roboto-Regular.woff2') format('woff2'), url('../fonts/roboto/Roboto-Regular.woff') format('woff');
-    font-weight: 400;
-  }
-
-  @font-face {
-    font-family: 'Roboto';
-    src: local(Roboto Medium), url('../fonts/roboto/Roboto-Medium.woff2') format('woff2'), url('../fonts/roboto/Roboto-Medium.woff') format('woff');
-    font-weight: 500;
-  }
-
-  @font-face {
-    font-family: 'Roboto';
-    src: local(Roboto Bold), url('../fonts/roboto/Roboto-Bold.woff2') format('woff2'), url('../fonts/roboto/Roboto-Bold.woff') format('woff');
-    font-weight: 700;
-  }
-
   html {
     line-height: 1.5;
-    font-family: 'Roboto', sans-serif;
+    font-family: Helvetica, sans-serif;
     color: rgba(0,0,0,0.87);
 
     @media only screen and (min-width: 0) {
