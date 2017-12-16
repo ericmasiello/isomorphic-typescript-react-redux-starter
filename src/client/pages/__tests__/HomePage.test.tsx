@@ -1,12 +1,19 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
-import homePage from '../HomePage';
+import homePage, { Home } from '../HomePage';
 
-const HomePage = homePage.component;
+const StyledHomePage = homePage.component;
 
-test('should render', () => {
+test('should render HomePage', () => {
   const wrapper = shallow(
-    <HomePage />,
+    <Home />,
+  );
+  expect(wrapper).toHaveLength(1);
+});
+
+test('should render styled HomePage', () => {
+  const wrapper = shallow(
+    <StyledHomePage />,
   );
   expect(wrapper).toHaveLength(1);
 });
