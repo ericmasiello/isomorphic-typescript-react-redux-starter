@@ -39,6 +39,7 @@ export default (req: Request, store: Store<AppState>, context: object) => {
         <script>
           window.INITIAL_STATE = ${serialize(store.getState())}
         </script>
+        <script src="vendor.js"></script>
         <script src="bundle.js"></script>
       </body>
     </html>
