@@ -21,28 +21,17 @@ export default (req: Request, store: Store<AppState>, context: object) => {
   );
 
   const sheet = new ServerStyleSheet();
-  const content = renderToString(sheet.collectStyles(app));
+  const html = renderToString(sheet.collectStyles(app));
   const styleTags = sheet.getStyleTags();
   const helmet = Helmet.renderStatic();
 
-  /* tslint:disable max-line-length */
-  return `
-    <html>
-      <head>
-        ${helmet.title.toString()}
-        ${helmet.meta.toString()}
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" />
-        ${styleTags}
-      </head>
-      <body>
-        <div id="root">${content}</div>
-        <script>
-          window.INITIAL_STATE = ${serialize(store.getState())}
-        </script>
-        <script src="vendor.js"></script>
-        <script src="bundle.js"></script>
-      </body>
-    </html>
-  `;
-  /* tslint:enable max-line-length */
+  return {
+    head: `
+      ${helmet.title.toString()}
+      ${helmet.meta.toString()}
+      ${styleTags}
+    `,
+    html,
+    state: serialize(store.getState()),
+  };
 };
