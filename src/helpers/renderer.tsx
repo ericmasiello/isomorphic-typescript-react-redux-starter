@@ -26,11 +26,11 @@ export default (req: Request, store: Store<AppState>, context: object) => {
   const helmet = Helmet.renderStatic();
 
   return {
-    head: `
-      ${helmet.title.toString()}
-      ${helmet.meta.toString()}
-      ${styleTags}
-    `,
+    head: [
+      helmet.title.toString().trim(),
+      helmet.meta.toString().trim(),
+      styleTags,
+    ].join('\n'),
     html,
     state: serialize(store.getState()),
   };
