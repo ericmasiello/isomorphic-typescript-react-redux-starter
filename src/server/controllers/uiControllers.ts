@@ -25,7 +25,7 @@ const uiRootController = (req: Request, res: Response) => {
 
   return Promise.all(promises).then(() => {
     const context: Context = {};
-    const content = renderer(req, store, context);
+    const { html, head, state } = renderer(req, store, context);
 
     if (context.url) {
       return res.redirect(301, context.url);
@@ -34,7 +34,7 @@ const uiRootController = (req: Request, res: Response) => {
       res.status(404);
     }
 
-    res.send(content);
+    res.render('index', { html, head, state });
   });
 };
 

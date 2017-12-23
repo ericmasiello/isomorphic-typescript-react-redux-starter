@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="description" content="FIXME">
+  <meta name="viewport" content="width=device-width, initial-scale=1">  
+  <%- head %>
+</head>
+<body>
+  <!--[if lt IE 9]>
+  <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+  <![endif]-->
+  <main id="root"><%- html %></main>
+  <noscript>
+    Sorry, this site requires JavaScript and modern web browser such as <a href="https://www.mozilla.org/en-US/firefox/new/" title="Download Firefox web browser">Firefox</a> or
+    <a href="http://www.google.com/chrome" title="Download the Chrome web browser">Chrome</a>.
+  </noscript>
+  <script>
+      window.INITIAL_STATE = <%- state %>;
+  </script>
+</body>
+</html>

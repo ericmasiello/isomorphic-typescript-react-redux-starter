@@ -25,7 +25,11 @@ const matchedRoutesWithoutLoadData = [
   },
 ];
 
-const rendered = '<html>The website!</html>';
+const rendered = {
+  head: 'the head',
+  html: '<div>foo bar</div>',
+  state: 'initialState = []',
+};
 const store = { the: 'store' };
 
 (renderer as jest.Mock<{}>).mockImplementation(() => rendered);
@@ -36,7 +40,7 @@ req.path = '/the/path';
 req.get = jest.fn();
 
 const res = {} as Response;
-res.send = jest.fn();
+res.render = jest.fn();
 res.redirect = jest.fn();
 res.status = jest.fn();
 
@@ -58,14 +62,14 @@ describe('send rendered response', () => {
   test('should support routes with custom data to load', () => {
     (matchRoutes as jest.Mock<{}>).mockImplementation(() => matchedRoutesWithLoadData);
     return uiRootController(req, res).then(() => {
-      expect(res.send).toBeCalledWith(rendered);
+      expect(res.render).toBeCalledWith('index', rendered);
       expect(matchedRoutesWithLoadData[0].route.loadData).toBeCalledWith(store);
     });
   });
   test('should support routes without custom data to load', () => {
     (matchRoutes as jest.Mock<{}>).mockImplementation(() => matchedRoutesWithoutLoadData);
     return uiRootController(req, res).then(() => {
-      expect(res.send).toBeCalledWith(rendered);
+      expect(res.render).toBeCalledWith('index', rendered);
     });
   });
 });
