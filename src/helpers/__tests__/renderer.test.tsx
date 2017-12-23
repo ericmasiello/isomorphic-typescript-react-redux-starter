@@ -30,7 +30,7 @@ test('should render head as a string', () => {
   const req = {} as express.Request;
   req.get = jest.fn();
   const store = createStore(req);
-  const { head, html, state } = renderer(req, store, {});
+  const { head } = renderer(req, store, {});
 
   expect(head.trim()).toEqual([
     '<title>The title</title>',
@@ -43,7 +43,7 @@ test('should render html as a string', () => {
   const req = {} as express.Request;
   req.get = jest.fn();
   const store = createStore(req);
-  const { head, html, state } = renderer(req, store, {});
+  const { html } = renderer(req, store, {});
 
   expect(html).toEqual('<html />');
 });
@@ -52,7 +52,7 @@ test('should render state as a string', () => {
   const req = {} as express.Request;
   req.get = jest.fn();
   const store = createStore(req);
-  const { head, html, state } = renderer(req, store, {});
+  const { state } = renderer(req, store, {});
 
   expect(state).toEqual(JSON.stringify(store.getState()));
 });
