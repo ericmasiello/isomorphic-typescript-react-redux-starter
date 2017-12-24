@@ -1,12 +1,19 @@
 import { Request, Response } from 'express';
 import { Store } from 'redux';
 import { matchRoutes } from 'react-router-config';
+import axios from 'axios';
 import createStore from '../../helpers/createStore';
 import Routes, { RouteConfigWithLoadData } from '../../client/Routes';
 import renderer from '../../helpers/renderer';
 
 const uiRootController = (req: Request, res: Response) => {
-  const store = <Store<AppState>>createStore(req);
+
+  const axiosInstance = axios.create({
+    baseURL: 'http://react-ssr-api.herokuapp.com',
+    headers: { cookie: req.get('cookie') || '' },
+  });
+
+  const store = <Store<AppState>>createStore(axiosInstance);
   const promises = <Promise<{}>[]>matchRoutes(Routes, req.path)
     .map((matchedRoute) => {
       const route = <RouteConfigWithLoadData>matchedRoute.route;

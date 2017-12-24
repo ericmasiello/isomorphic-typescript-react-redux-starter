@@ -1,14 +1,11 @@
 import createStore from '../createStore';
 import thunk from 'redux-thunk';
-import * as express from 'express';
 import axios from 'axios';
 import * as redux from 'redux';
 
 test('create a store with default state', () => {
-  const req = {} as express.Request;
-  req.get = jest.fn();
-
-  const store = createStore(req);
+  const axiosInstance = axios.create();
+  const store = createStore(axiosInstance);
   const result: any = store.getState();
 
   expect(result.users).toHaveLength(0);
@@ -16,56 +13,57 @@ test('create a store with default state', () => {
   expect(result.auth).toBe(null);
 });
 
+test('create a store with initialized state', () => {
+
+  const state: AppState = {
+    users: [{
+      id: '123',
+      name: 'Eric',
+    }],
+    admins: [{
+      id: '456',
+      name: 'Hyun',
+    }],
+    auth: false,
+  };
+
+  const axiosInstance = axios.create();
+  const store = createStore(axiosInstance, state);
+  const result: any = store.getState();
+
+  expect(result.users).toEqual(state.users);
+  expect(result.admins).toEqual(state.admins);
+  expect(result.auth).toBe(false);
+});
+
 describe('axios instance', () => {
 
-  let originalCreate: any;
   let originalThunkWithExtraArgument: any;
   let originalApplyMiddleware: any;
-  const mockAxiosInstaince = jest.fn();
 
   beforeEach(() => {
     originalApplyMiddleware = redux.applyMiddleware;
     originalThunkWithExtraArgument = thunk.withExtraArgument;
-    originalCreate = axios.create;
 
     (<any>redux).applyMiddleware = jest.fn();
-    axios.create = jest.fn(() => mockAxiosInstaince);
     thunk.withExtraArgument = jest.fn();
   });
 
   afterEach(() => {
     (<any>redux).applyMiddleware = originalApplyMiddleware;
-    axios.create = originalCreate;
     thunk.withExtraArgument = originalThunkWithExtraArgument;
   });
 
-  test('should create an axios instance', () => {
-    const req = {} as express.Request;
-    req.get = jest.fn();
-
-    createStore(req);
-    expect(axios.create).toBeCalledWith({
-      baseURL: 'http://react-ssr-api.herokuapp.com',
-      headers: {
-        cookie: '',
-      },
-    });
-
-    expect(thunk.withExtraArgument).toBeCalledWith(mockAxiosInstaince);
+  test('should pass the axios instance to thunk', () => {
+    const axiosInstance = axios.create();
+    createStore(axiosInstance);
+    expect(thunk.withExtraArgument).toBeCalledWith(axiosInstance);
   });
+});
 
-  test('should create an axious instance using the cookie from the request object', () => {
-    const req = {} as express.Request;
-    req.get = jest.fn(() => 'the cookie');
-
-    createStore(req);
-    expect(axios.create).toBeCalledWith({
-      baseURL: 'http://react-ssr-api.herokuapp.com',
-      headers: {
-        cookie: 'the cookie',
-      },
-    });
-
-    expect(thunk.withExtraArgument).toBeCalledWith(mockAxiosInstaince);
-  });
+test('should use custom compose method', () => {
+  const axiosInstance = axios.create();
+  const mockCompose = jest.fn();
+  createStore(axiosInstance, undefined, mockCompose);
+  expect(mockCompose).toBeCalled();
 });

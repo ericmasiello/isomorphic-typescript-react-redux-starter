@@ -2,6 +2,7 @@ import renderer from '../renderer';
 import * as express from 'express';
 import { ServerStyleSheet } from 'styled-components';
 import { renderToString } from 'react-dom/server';
+import axios from 'axios';
 import createStore from '../createStore';
 
 jest.mock('react-helmet', () => {
@@ -29,7 +30,8 @@ jest.mock('react-dom/server');
 test('should render head as a string', () => {
   const req = {} as express.Request;
   req.get = jest.fn();
-  const store = createStore(req);
+  const axiosInstance = axios.create();
+  const store = createStore(axiosInstance);
   const { head } = renderer(req, store, {});
 
   expect(head.trim()).toEqual([
@@ -42,7 +44,8 @@ test('should render head as a string', () => {
 test('should render html as a string', () => {
   const req = {} as express.Request;
   req.get = jest.fn();
-  const store = createStore(req);
+  const axiosInstance = axios.create();
+  const store = createStore(axiosInstance);
   const { html } = renderer(req, store, {});
 
   expect(html).toEqual('<html />');
@@ -51,7 +54,8 @@ test('should render html as a string', () => {
 test('should render state as a string', () => {
   const req = {} as express.Request;
   req.get = jest.fn();
-  const store = createStore(req);
+  const axiosInstance = axios.create();
+  const store = createStore(axiosInstance);
   const { state } = renderer(req, store, {});
 
   expect(state).toEqual(JSON.stringify(store.getState()));
