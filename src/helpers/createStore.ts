@@ -1,23 +1,23 @@
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import axios from 'axios';
-import { Request } from 'express';
+import { AxiosInstance } from 'axios';
 import reducers from '../client/reducers';
 
-export default (req: Request) => {
-  const axiosInstance = axios.create({
-    baseURL: 'http://react-ssr-api.herokuapp.com',
-    headers: { cookie: req.get('cookie') || '' },
-  });
+const defaultIntialState = {
+  users: [],
+  admins: [],
+  auth: null,
+};
 
+export default (
+  axiosInstance: AxiosInstance,
+  initialState: AppState = defaultIntialState,
+  composeEnhancers = compose,
+) => {
   const store = createStore(
     reducers,
-    {
-      users: [],
-      admins: [],
-      auth: null,
-    },
-    applyMiddleware(thunk.withExtraArgument(axiosInstance)),
+    initialState,
+    composeEnhancers(applyMiddleware(thunk.withExtraArgument(axiosInstance))),
   );
 
   return store;
