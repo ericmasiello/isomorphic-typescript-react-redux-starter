@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { matchRoutes } from 'react-router-config';
+import axios from 'axios';
 import uiRootController from '../uiControllers';
 import renderer from '../../../helpers/renderer';
 import createStore from '../../../helpers/createStore';
@@ -7,6 +8,7 @@ import Routes from '../../../client/Routes';
 jest.mock('react-router-config');
 jest.mock('../../../helpers/renderer');
 jest.mock('../../../helpers/createStore');
+jest.mock('axios');
 
 const matchedRoutesWithLoadData = [
   {
@@ -31,9 +33,11 @@ const rendered = {
   state: 'initialState = []',
 };
 const store = { the: 'store' };
+const mockAxios = {};
 
 (renderer as jest.Mock<{}>).mockImplementation(() => rendered);
 (createStore as jest.Mock<{}>).mockImplementation(jest.fn(() => store));
+(axios.create as jest.Mock<{}>).mockImplementation(jest.fn(() => mockAxios));
 
 const req = {} as Request;
 req.path = '/the/path';
@@ -44,10 +48,10 @@ res.render = jest.fn();
 res.redirect = jest.fn();
 res.status = jest.fn();
 
-test('should call createStore with the request object', () => {
+test('should call createStore with axios instance', () => {
   (matchRoutes as jest.Mock<{}>).mockImplementation(() => matchedRoutesWithLoadData);
   return uiRootController(req, res).then(() => {
-    expect(createStore).toBeCalledWith(req);
+    expect(createStore).toBeCalledWith(mockAxios);
   });
 });
 
