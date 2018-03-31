@@ -1,9 +1,17 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
+import { ThunkAction } from 'redux-thunk';
 import { fetchUsers } from '../actions';
+import { Store } from 'redux';
 import { Helmet } from 'react-helmet';
+import { ThunkActionCreator } from '../../types.d'
 
-class UsersList extends Component {
+interface Props {
+  fetchUsers: ThunkActionCreator<User[]>;
+  users: User[];
+}
+
+class UsersList extends React.Component<Props, {}> {
   componentDidMount() {
     this.props.fetchUsers();
   }
@@ -34,15 +42,11 @@ class UsersList extends Component {
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state: AppState) {
   return { users: state.users };
 }
 
-function loadData(store) {
-  return store.dispatch(fetchUsers());
-}
-
 export default {
-  loadData,
+  loadData: ({ dispatch }: Store<User[]>) => dispatch(fetchUsers()),
   component: connect(mapStateToProps, { fetchUsers })(UsersList)
 };

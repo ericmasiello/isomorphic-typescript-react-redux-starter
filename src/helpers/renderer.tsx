@@ -1,13 +1,15 @@
-import React from 'react';
+import * as React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { renderRoutes } from 'react-router-config';
-import serialize from 'serialize-javascript';
+import * as serialize from 'serialize-javascript';
 import { Helmet } from 'react-helmet';
 import Routes from '../client/Routes';
+import { Request } from 'express';
+import { Store } from 'redux';
 
-export default (req, store, context) => {
+export default (req: Request, store: Store<AppState>, context: object) => {
   const content = renderToString(
     <Provider store={store}>
       <StaticRouter location={req.path} context={context}>

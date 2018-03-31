@@ -1,18 +1,26 @@
-import React from 'react';
+import * as React from 'react';
+import { Store } from 'redux';
 import App from './App';
 import HomePage from './pages/HomePage';
 import UsersListPage from './pages/UsersListPage';
 import NotFoundPage from './pages/NotFoundPage';
 import AdminsListPage from './pages/AdminsListPage';
+import { RouteConfig } from 'react-router-config';
 
-export default [
+export interface RouteConfigWithLoadData extends RouteConfig {
+  component: React.ComponentType<any>;
+  loadData?: (store: Store<any>) => Promise<any>;
+  routes?: RouteConfigWithLoadData[];
+}
+
+const Routes: RouteConfigWithLoadData[] = [
   {
     ...App,
     routes: [
       {
         ...HomePage,
         path: '/',
-        exact: true
+        exact: true,
       },
       {
         ...AdminsListPage,
@@ -23,8 +31,10 @@ export default [
         path: '/users'
       },
       {
-        ...NotFoundPage
+        ...NotFoundPage,
       }
     ]
   }
 ];
+
+export default Routes;
