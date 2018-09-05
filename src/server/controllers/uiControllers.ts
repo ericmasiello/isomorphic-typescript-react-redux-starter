@@ -8,7 +8,7 @@ import renderer from '../../helpers/renderer';
 const uiRootController = (req: Request, res: Response) => {
   const store = <Store<AppState>>createStore(req);
   const promises = <Promise<{}>[]>matchRoutes(Routes, req.path)
-    .map(matchedRoute => {
+    .map((matchedRoute) => {
       const route = <RouteConfigWithLoadData>matchedRoute.route;
       if (route.loadData) {
         return route.loadData(store);
@@ -36,6 +36,6 @@ const uiRootController = (req: Request, res: Response) => {
 
     res.send(content);
   });
-}
+};
 
 export default uiRootController;

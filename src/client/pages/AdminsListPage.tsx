@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Store } from 'redux';
-import { ThunkAction } from 'redux-thunk';
 import { fetchAdmins } from '../actions';
 import requireAuth from '../components/hocs/requireAuth';
-import { ThunkActionCreator } from '../../types.d'
+import { ThunkActionCreator } from '../../types.d';
 
 interface Props {
   fetchAdmins: ThunkActionCreator<User[]>;
@@ -17,7 +16,7 @@ class AdminsListPage extends React.Component<Props, {}> {
   }
 
   renderAdmins() {
-    return this.props.admins.map(admin => {
+    return this.props.admins.map((admin) => {
       return <li key={admin.id}>{admin.name}</li>;
     });
   }
@@ -38,7 +37,7 @@ function mapStateToProps({ admins }: AppState) {
 
 export default {
   component: connect(mapStateToProps, { fetchAdmins })(
-    requireAuth(AdminsListPage)
+    requireAuth(AdminsListPage),
   ),
-  loadData: ({ dispatch }: Store<User[]>) => dispatch(fetchAdmins())
+  loadData: ({ dispatch }: Store<User[]>) => dispatch(fetchAdmins()),
 };
