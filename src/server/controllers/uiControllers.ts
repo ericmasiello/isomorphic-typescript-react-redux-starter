@@ -23,7 +23,7 @@ const uiRootController = (req: Request, res: Response) => {
       }
     });
 
-  Promise.all(promises).then(() => {
+  return Promise.all(promises).then(() => {
     const context: Context = {};
     const content = renderer(req, store, context);
 

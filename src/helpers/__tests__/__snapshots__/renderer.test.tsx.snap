@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render an html string 1`] = `
+"
+    <html>
+      <head>
+        The title
+        The meta
+        <link rel=\\"stylesheet\\" href=\\"https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css\\">
+      </head>
+      <body>
+        <div id=\\"root\\"><div data-reactroot=\\"\\"><div><nav><div class=\\"nav-wrapper\\"><a class=\\"brand-logo\\" href=\\"/\\">React SSR</a><ul class=\\"right\\"><li><a href=\\"/users\\">Users</a></li><li><a href=\\"/admins\\">Admins</a></li><li><a href=\\"/api/auth/google\\">Login</a></li></ul></div></nav><div class=\\"center-align\\" style=\\"margin-top:200px\\"><h3>Welcome</h3><p>Check out these awesome features</p></div></div></div></div>
+        <script>
+          window.INITIAL_STATE = {\\"users\\":[],\\"admins\\":[],\\"auth\\":null}
+        </script>
+        <script src=\\"bundle.js\\"></script>
+      </body>
+    </html>
+  "
+`;

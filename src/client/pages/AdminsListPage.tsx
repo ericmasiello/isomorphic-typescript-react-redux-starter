@@ -10,7 +10,7 @@ interface Props {
   admins: User[];
 }
 
-class AdminsListPage extends React.Component<Props, {}> {
+export class AdminsListPage extends React.Component<Props, {}> {
   componentDidMount() {
     this.props.fetchAdmins();
   }
